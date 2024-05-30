@@ -67,7 +67,6 @@ class SignupFragment : Fragment() {
     }
 
     private fun onSingup() {
-
         binding.btSignup.setOnClickListener {
             if (areFieldReady()) {
                 if (imageUri != null) {

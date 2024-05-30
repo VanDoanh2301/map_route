@@ -10,6 +10,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.journaldev.maproutebetweenmarkers.data.local.UserModel
+import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -55,6 +56,62 @@ class AuthRepositoryImpl(
                     continuation.resumeWithException(task.exception ?: IllegalStateException("Lỗi không xác định"))
                 }
             }
+        }
+    }
+
+    override suspend fun getUserData(uid: String): Result<UserModel> {
+        return try {
+            val dataSnapshot = firebaseDatabase.getReference("users").child(uid).get().await()
+            val userModel = dataSnapshot.getValue(UserModel::class.java)
+            userModel?.let {
+                Result.success(it)
+            } ?: Result.failure(Exception("User not found"))
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override fun logoutUser(): Result<Unit> {
+        return try {
+            auth.signOut()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun updateEmail(newEmail: String): Result<Unit> {
+        return try {
+            val user = auth.currentUser
+            user?.updateEmail(newEmail)?.await()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun changePassword(newPassword: String): Result<Unit> {
+        return try {
+            val user = auth.currentUser
+            user?.updatePassword(newPassword)?.await()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun updateProfileImage(uid: String, imageUri: Uri): Result<String> {
+        return try {
+            val imageRef = storageRef.reference.child("profile_images/$uid.jpg")
+            val uploadTask = imageRef.putFile(imageUri).await()
+            val downloadUrl = imageRef.downloadUrl.await().toString()
+
+            // Update the user profile image URL in the database
+            firebaseDatabase.getReference("users").child(uid).child("image").setValue(downloadUrl).await()
+
+            Result.success(downloadUrl)
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 

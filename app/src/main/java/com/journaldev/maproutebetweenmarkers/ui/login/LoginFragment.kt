@@ -60,12 +60,16 @@ class LoginFragment : Fragment() {
          loadingDialog.startLoading()
         viewModel.login(email!!, password!!)
         viewModel.loginResult.observe(viewLifecycleOwner) {
-            if (it.isSuccess) {
-                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                loadingDialog.stopLoading()
-            } else {
-                Toast.makeText(requireContext(), "Email or Password is incorrect", Toast.LENGTH_SHORT).show()
-                loadingDialog.stopLoading()
+            try {
+                if (it.isSuccess) {
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    loadingDialog.stopLoading()
+                } else {
+                    Toast.makeText(requireContext(), "Email or Password is incorrect", Toast.LENGTH_SHORT).show()
+                    loadingDialog.stopLoading()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Account not found", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="26dp"
+        android:padding="16dp"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,20 +30,24 @@
                     android:layout_height="58dp"
                     android:src="@drawable/img_avt"
                     android:layout_centerVertical="true"
+                    android:elevation="4dp"
                     />
+
                 <TextView
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Anh Trong"
+                    android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@+id/img_avt"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
                     android:fontFamily="@font/sans_medium"
-                    android:textColor="#1B1638"
                     android:paddingStart="16dp"
-                    />
+                    android:text="Anh Trong"
+                    android:textColor="#1B1638"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
                 <TextView
+                    android:id="@+id/tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Anh@gmail.com"
