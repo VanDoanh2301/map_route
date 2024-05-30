@@ -46,7 +46,7 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
-            delay(3000)
+            delay(2000)
             if (firebaseAuth.currentUser == null) {
                 findNavController().popBackStack(R.id.splashFragment, false)
                 findNavController().navigate(R.id.loginFragment)

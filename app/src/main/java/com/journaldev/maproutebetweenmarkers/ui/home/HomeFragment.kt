@@ -1,5 +1,6 @@
 package com.journaldev.maproutebetweenmarkers.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.journaldev.maproutebetweenmarkers.R
 import com.journaldev.maproutebetweenmarkers.databinding.FragmentHomeBinding
+import com.journaldev.maproutebetweenmarkers.ui.map.MapActivity
 import com.journaldev.maproutebetweenmarkers.utils.LoadingDialog
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -76,6 +78,12 @@ class HomeFragment : Fragment() {
                         findNavController().navigate(R.id.loginFragment)
                     }
                 }
+            }
+            btnMap.setOnClickListener {
+                startActivity(Intent(requireActivity(), MapActivity::class.java))
+            }
+            btnHealth.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_healthFragment)
             }
         }
     }
