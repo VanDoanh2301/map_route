@@ -13,22 +13,30 @@
 
         <ImageView
             android:id="@+id/img_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="34dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/img_login_1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/hut"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="83dp"
             />
-        <ImageView
+        <TextView
             android:id="@+id/img_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:src="@drawable/img_text_content"
             android:layout_marginTop="22dp"
+            android:text="Smart Runing App"
+            android:textSize="38sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
             app:layout_constraintTop_toBottomOf="@id/img_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

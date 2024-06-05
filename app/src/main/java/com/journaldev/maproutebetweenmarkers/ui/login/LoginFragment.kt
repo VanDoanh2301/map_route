@@ -51,9 +51,14 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
         }
         binding.btnLogin.setOnClickListener { view ->
-            if (areFieldReady()) {
-                login()
+            try {
+                if (areFieldReady()) {
+                    login()
+                }
+            } catch (e :Exception) {
+
             }
+
         }
     }
     private fun login() {
