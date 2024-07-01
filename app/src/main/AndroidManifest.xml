@@ -68,7 +68,12 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD5BnWrzmw0Y8Oat_0s1dI-zzzcnsPfMvI" />
-
+  <activity android:name="com.example.run_core.ui.map.MapActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme" />
+        <activity android:name="com.example.run_core.ui.map.MapsActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:exported="true"
